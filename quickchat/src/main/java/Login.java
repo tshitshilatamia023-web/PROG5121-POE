@@ -12,7 +12,10 @@ public class Login {
     private String logpass;
 
     public boolean checkUserName(String username) {
-        return username.contains("_") && username.length() <= 5;
+        if(username.contains("_") && username.length() <= 5){
+            return true;
+        }
+        return false;
     }
 
     public boolean checkPasswordComplexity(String password) {
@@ -38,16 +41,14 @@ public class Login {
         return hasUpperCase && hasNumber && hasSpecialCharacters;
     }
 
-    // =========================
-    // PHONE VALIDATION (YOUR LOGIC KEPT)
-    // =========================
     public boolean checkCellPhoneNumber(String phone) {
-        return phone.length() == 12 && phone.contains("+27");
+
+        if (phone.length() == 12 && phone.contains("+27")){
+            return true;
+        }
+        return false;
     }
 
-    // =========================
-    // REGISTER USER
-    // =========================
     public void registerUser(Scanner input) {
 
         System.out.print("Enter first name: ");
@@ -56,22 +57,20 @@ public class Login {
         System.out.print("Enter last name: ");
         lastName = input.nextLine();
 
-        // USERNAME LOOP
         boolean correctUsername = false;
         while (!correctUsername) {
 
             System.out.print("Enter username: ");
             username = input.nextLine();
 
-            if (checkUserName(username)) {
-                System.out.println("Username successfully captured");
+             if (checkUserName(username)) {
+                 System.out.println("Username successfully captured");
                 correctUsername = true;
-            } else {
-                System.out.println("Username is not correctly formatted, please ensure username contains an underscore and is no more than 5 characters in length.");
-            }
+             } else {
+                 System.out.println("Username is not correctly formatted, please ensure username contains an underscore and is no more than 5 characters in length.");
+             }
         }
 
-        // PASSWORD LOOP
         boolean correctPassword = false;
         while (!correctPassword) {
 
@@ -86,7 +85,6 @@ public class Login {
             }
         }
 
-        // PHONE LOOP
         boolean correctPhone = false;
         while (!correctPhone) {
 
@@ -104,9 +102,6 @@ public class Login {
         System.out.println("This user is successfully registered.");
     }
 
-    // =========================
-    // LOGIN USER
-    // =========================
     public void loginUser(Scanner input) {
 
         System.out.print("Enter Registered username: ");
@@ -118,9 +113,6 @@ public class Login {
         System.out.println(returnLoginStatus());
     }
 
-    // =========================
-    // RETURN STATUS
-    // =========================
     public String returnLoginStatus() {
 
         if (loguser.equals(username) && logpass.equals(password)) {
