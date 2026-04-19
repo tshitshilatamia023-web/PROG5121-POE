@@ -2,15 +2,20 @@ import java.util.Scanner;
 
 public class Login {
 
+    // user details
     private String username;
     private String password;
     private String cellPhoneNumber;
     private String firstName;
     private String lastName;
 
+
+    // login input
     private String loguser;
     private String logpass;
 
+
+    // checks if username has "_" and is not greater than or equal to 5
     public boolean checkUserName(String username) {
         if(username.contains("_") && username.length() <= 5){
             return true;
@@ -18,6 +23,8 @@ public class Login {
         return false;
     }
 
+
+    // checks password rules (length, capital, number, special char)
     public boolean checkPasswordComplexity(String password) {
 
         boolean hasUpperCase = false;
@@ -41,6 +48,8 @@ public class Login {
         return hasUpperCase && hasNumber && hasSpecialCharacters;
     }
 
+
+    // checks if phone number has +27 and correct length
     public boolean checkCellPhoneNumber(String phone) {
 
         if (phone.length() == 12 && phone.contains("+27")){
@@ -49,6 +58,8 @@ public class Login {
         return false;
     }
 
+
+    // handles registration logic
     public void registerUser(Scanner input) {
 
         System.out.print("Enter first name: ");
@@ -57,6 +68,8 @@ public class Login {
         System.out.print("Enter last name: ");
         lastName = input.nextLine();
 
+
+        // keep asking until username is correct
         boolean correctUsername = false;
         while (!correctUsername) {
 
@@ -71,6 +84,8 @@ public class Login {
              }
         }
 
+
+        // keep asking until password is correct
         boolean correctPassword = false;
         while (!correctPassword) {
 
@@ -85,6 +100,8 @@ public class Login {
             }
         }
 
+
+        // keep asking until phone number is correct
         boolean correctPhone = false;
         while (!correctPhone) {
 
@@ -102,6 +119,8 @@ public class Login {
         System.out.println("This user is successfully registered.");
     }
 
+
+    // handles login logic
     public void loginUser(Scanner input) {
 
         System.out.print("Enter Registered username: ");
@@ -113,6 +132,7 @@ public class Login {
         System.out.println(returnLoginStatus());
     }
 
+    // checks if login details match
     public String returnLoginStatus() {
 
         if (loguser.equals(username) && logpass.equals(password)) {
